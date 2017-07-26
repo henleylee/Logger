@@ -2,16 +2,16 @@
 日志系统，使用打印助手对象维护不同的日志打印助手进行日志输出，可以是Console、Logcat、文件等打印助手，支持字符串、普通对象、Uri、Bundle、Intent、Message、Collection、Map、SparseArray、Bitmap、Reference、Throwable、JSON、Xml等格式化的输出。
 
 ## 功能介绍
-1、在Logcat中完美的格式化输出，能很好的过滤手机和其他App的日志信息；
-2、打印当前线程的名称、ID、优先级、State、Group信息，可以清楚地看到当前线程的信息；
-3、打印调用日志打印方法的类名、方法名、行号等信息，可以清楚地看到日志记录的调用堆栈，支持跳转到源码处；
-4、支持格式化输出JSON、XML格式信息；
-5、支持List、Set、Map、SparseArray、和数组的格式化输出；
-6、支持系统对象如Uri、Bundle、Intent、Message、Reference和Throwable的格式化输出；
-7、支持自定义对象的格式化输出；
-8、支持字符串格式化后输出；
-9、支持自定义对象解析器；
-10、支持自定义日志输出树，如输出到文件的树等。
+* 在Logcat中完美的格式化输出，能很好的过滤手机和其他App的日志信息；
+* 打印当前线程的名称、ID、优先级、State、Group信息，可以清楚地看到当前线程的信息；
+* 打印调用日志打印方法的类名、方法名、行号等信息，可以清楚地看到日志记录的调用堆栈，支持跳转到源码处；
+* 支持格式化输出JSON、XML格式信息；
+* 支持List、Set、Map、SparseArray、和数组的格式化输出；
+* 支持系统对象如Uri、Bundle、Intent、Message、Reference和Throwable的格式化输出；
+* 支持自定义对象的格式化输出；
+* 支持字符串格式化后输出；
+* 支持自定义对象解析器；
+* 支持自定义日志输出树，如输出到文件的树等。
 
 ## 使用介绍 ##
 使用前需要进行日志的配置初始化及打印助手的添加，默认实现了打印到Logcat、文件、Console的打印助手，但需要在应用启动时进行添加，这样才能将日志信息打印到Logcat、文件、Console中。一般需要在自定义Application的OnCreate方法中进行如下配置：
