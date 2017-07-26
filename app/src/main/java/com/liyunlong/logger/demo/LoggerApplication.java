@@ -1,0 +1,35 @@
+package com.liyunlong.logger.demo;
+
+import android.app.Application;
+import android.util.Log;
+
+import com.liyunlong.logger.Logger;
+import com.liyunlong.logger.printer.ConsolePrinter;
+import com.liyunlong.logger.printer.FilePrinter;
+import com.liyunlong.logger.printer.LogcatPrinter;
+
+/**
+ * @author liyunlong
+ * @date 2017/7/24 15:19
+ */
+public class LoggerApplication extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        if (BuildConfig.DEBUG) {
+
+            Logger.getLogConfig()                   // 获取配置信息(可重新进行设置)
+                    .setLogEnabled(true)            // 设置是否启用日志输出
+                    .setShowFormat(true)            // 设置是否打印排版线条
+                    .setShowThreadInfo(true)        // 设置是否打印线程信息
+                    .setShowMethodInfo(true)        // 设置是否打印方法信息
+                    .setLogMinLevel(Log.VERBOSE);   // 设置日志最小输出级别
+
+            Logger.addPrinter(new ConsolePrinter());    // 添加控制台打印助手(输出日志信息到控制台)
+            Logger.addPrinter(new FilePrinter(this));   // 添加文件打印助手(输出日志信息到文件)
+            Logger.addPrinter(new LogcatPrinter());     // 添加Logcat打印助手-输出日志信息到Logcat
+
+        }
+    }
+}
