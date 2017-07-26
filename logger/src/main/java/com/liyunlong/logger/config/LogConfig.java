@@ -2,7 +2,6 @@ package com.liyunlong.logger.config;
 
 import android.util.Log;
 
-import com.liyunlong.logger.BuildConfig;
 import com.liyunlong.logger.parser.IParser;
 import com.liyunlong.logger.utils.Constants;
 
@@ -26,7 +25,7 @@ public class LogConfig {
     private List<IParser> parseList; // 自定义解析器集合
 
     public LogConfig() {
-        this.isLogEnabled = BuildConfig.DEBUG;
+        this.isLogEnabled = true;
         this.showFormat = false;
         this.showThreadInfo = false;
         this.showMethodInfo = false;
