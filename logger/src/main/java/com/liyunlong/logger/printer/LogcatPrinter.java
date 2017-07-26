@@ -3,7 +3,7 @@ package com.liyunlong.logger.printer;
 import android.util.Log;
 
 /**
- * Logcat打印助手-输出日志信息到Logcat
+ * Logcat打印助手(输出日志信息到Logcat)
  *
  * @author liyunlong
  * @date 2017/7/24 10:33

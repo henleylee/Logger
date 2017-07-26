@@ -25,7 +25,7 @@
 
     Logger.addPrinter(new ConsolePrinter());    // 添加控制台打印助手(输出日志信息到控制台)
     Logger.addPrinter(new FilePrinter(this));   // 添加文件打印助手(输出日志信息到文件)
-    Logger.addPrinter(new LogcatPrinter());     // 添加Logcat打印助手-输出日志信息到Logcat
+    Logger.addPrinter(new LogcatPrinter());     // 添加Logcat打印助手(输出日志信息到Logcat)
 ```
 
 #### 1、打印字符串信息： ####
@@ -160,5 +160,6 @@
 | addParser | 添加解析器 | IParser | 无 |
 
 ## 感谢 ##
+
 1、[https://github.com/orhanobut/logger](https://github.com/orhanobut/logger)
-1、[https://github.com/xiaoyaoyou1212/ViseLog](https://github.com/xiaoyaoyou1212/ViseLog)
+2、[https://github.com/xiaoyaoyou1212/ViseLog](https://github.com/xiaoyaoyou1212/ViseLog)
