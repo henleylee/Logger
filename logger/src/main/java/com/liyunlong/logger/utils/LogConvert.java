@@ -22,9 +22,6 @@ public class LogConvert {
 
     /**
      * 获取数组的纬度
-     *
-     * @param object
-     * @return
      */
     private static int getArrayDimension(Object object) {
         int dim = 0;
@@ -40,9 +37,6 @@ public class LogConvert {
 
     /**
      * 是否为数组
-     *
-     * @param object
-     * @return
      */
     private static boolean isArray(Object object) {
         return object.getClass().isArray();
@@ -52,7 +46,6 @@ public class LogConvert {
      * 获取数组类型
      *
      * @param object 如L为int型
-     * @return
      */
     private static char getType(Object object) {
         if (isArray(object)) {
@@ -125,9 +118,6 @@ public class LogConvert {
 
     /**
      * 将数组内容转化为字符串
-     *
-     * @param array
-     * @return
      */
     private static String parseArray(Object array) {
         StringBuilder result = new StringBuilder();
@@ -139,7 +129,6 @@ public class LogConvert {
      * 将对象转化为String
      *
      * @param object
-     * @return
      */
     public static <T> String objectToStringWithFormat(T object) {
         String value = objectToString(object, 0);
@@ -148,9 +137,6 @@ public class LogConvert {
 
     /**
      * 将对象转化为String
-     *
-     * @param object
-     * @return
      */
     public static <T> String objectToString(T object) {
         return objectToString(object, 0);
@@ -161,13 +147,12 @@ public class LogConvert {
      *
      * @param object
      * @param childLevel 对象包含子对象层级
-     * @return
      */
     private static <T> String objectToString(T object, int childLevel) {
         if (object == null) {
             return "Object[object is null]";
         }
-        if (childLevel > Constants.MAX_CHILD_LEVEL) {
+        if (childLevel > LogConstants.MAX_CHILD_LEVEL) {
             return object.toString();
         }
         List<IParser> parseList = Logger.getLogConfig().getParseList(); // 获取默认解析类
@@ -199,8 +184,6 @@ public class LogConvert {
 
     /**
      * 是否为静态内部类
-     *
-     * @param clazz
      */
     private static boolean isStaticInnerClass(Class clazz) {
         if (clazz != null && clazz.isMemberClass()) {
@@ -226,7 +209,7 @@ public class LogConvert {
             return;
         }
         if (isSubClass) {
-            builder.append(Constants.LINE_SEPARATOR).append(Constants.LINE_SEPARATOR).append("=> ");
+            builder.append(LogConstants.LINE_SEPARATOR).append(LogConstants.LINE_SEPARATOR).append("=> ");
         }
         String breakLine = "";
         builder.append(clazz.getSimpleName()).append(" {");
@@ -255,7 +238,7 @@ public class LogConvert {
                     } else if (subObject instanceof Character) {
                         subObject = "\'" + subObject + "\'";
                     }
-                    if (childOffset < Constants.MAX_CHILD_LEVEL) {
+                    if (childOffset < LogConstants.MAX_CHILD_LEVEL) {
                         subObject = objectToString(subObject, childOffset + 1);
                     }
                 }
@@ -274,17 +257,16 @@ public class LogConvert {
      * 打印分割线
      *
      * @param dir
-     * @return
      */
     public static String printDividingLine(int dir) {
         switch (dir) {
-            case Constants.DIVIDER_TOP:
+            case LogConstants.DIVIDER_TOP:
                 return "╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════";
-            case Constants.DIVIDER_BOTTOM:
+            case LogConstants.DIVIDER_BOTTOM:
                 return "╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════";
-            case Constants.DIVIDER_NORMAL:
+            case LogConstants.DIVIDER_NORMAL:
                 return "║ ";
-            case Constants.DIVIDER_CENTER:
+            case LogConstants.DIVIDER_CENTER:
                 return "╟───────────────────────────────────────────────────────────────────────────────────────────────────────────────────";
             default:
                 break;
@@ -295,14 +277,11 @@ public class LogConvert {
 
     /**
      * 长字符串转化为List
-     *
-     * @param msg
-     * @return
      */
     public static List<String> largeStringToList(String msg) {
         List<String> stringList = new ArrayList<>();
         int index = 0;
-        int maxLength = Constants.LINE_MAX;
+        int maxLength = LogConstants.LINE_MAX;
         int countOfSub = msg.length() / maxLength;
         if (countOfSub > 0) {
             for (int i = 0; i < countOfSub; i++) {
@@ -320,7 +299,7 @@ public class LogConvert {
     /**
      * 格式化
      */
-    public static String fotmatValue(String value){
+    private static String fotmatValue(String value){
         if (!TextUtils.isEmpty(value) && value.contains("\n")) {
             value = value.replace("\n", "\n    ");
         }

@@ -152,8 +152,8 @@ public class PrinterManager extends Printer {
 
     @Override
     public void json(String tag, String json) {
-        for (IPrinter tree : printers) {
-            tree.json(tag, json);
+        for (IPrinter printer : printers) {
+            printer.json(tag, json);
         }
     }
 

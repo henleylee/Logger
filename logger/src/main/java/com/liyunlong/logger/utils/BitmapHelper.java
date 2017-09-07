@@ -21,7 +21,7 @@ public class BitmapHelper {
     /**
      * 获取Bitmap的大小
      */
-    public static long getBitmapSize(Bitmap bitmap) {
+    private static long getBitmapSize(Bitmap bitmap) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { // API 19
             return bitmap.getAllocationByteCount();
         }

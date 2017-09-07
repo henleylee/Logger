@@ -2,10 +2,22 @@ package com.liyunlong.logger.config;
 
 import android.util.Log;
 
+import com.liyunlong.logger.parser.BitmapParse;
+import com.liyunlong.logger.parser.BundleParse;
+import com.liyunlong.logger.parser.CollectionParse;
 import com.liyunlong.logger.parser.IParser;
-import com.liyunlong.logger.utils.Constants;
+import com.liyunlong.logger.parser.IntentParse;
+import com.liyunlong.logger.parser.MapParse;
+import com.liyunlong.logger.parser.MessageParse;
+import com.liyunlong.logger.parser.ReferenceParse;
+import com.liyunlong.logger.parser.SparseArrayParse;
+import com.liyunlong.logger.parser.ThrowableParse;
+import com.liyunlong.logger.parser.UriParse;
+import com.liyunlong.logger.utils.LogConstants;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -16,9 +28,24 @@ import java.util.List;
  */
 public class LogConfig {
 
+    /** 默认支持解析库 */
+    private static final List<Class<? extends IParser>> DEFAULT_PARSE_CLASS = new ArrayList<>();
+
+    static {
+        DEFAULT_PARSE_CLASS.add(UriParse.class);
+        DEFAULT_PARSE_CLASS.add(BundleParse.class);
+        DEFAULT_PARSE_CLASS.add(IntentParse.class);
+        DEFAULT_PARSE_CLASS.add(MessageParse.class);
+        DEFAULT_PARSE_CLASS.add(CollectionParse.class);
+        DEFAULT_PARSE_CLASS.add(SparseArrayParse.class);
+        DEFAULT_PARSE_CLASS.add(MapParse.class);
+        DEFAULT_PARSE_CLASS.add(BitmapParse.class);
+        DEFAULT_PARSE_CLASS.add(ThrowableParse.class);
+        DEFAULT_PARSE_CLASS.add(ReferenceParse.class);
+    }
+
     private boolean isLogEnabled; // 是否启用日志输出
     private String commonTag; // 公共Tag
-    private boolean showFormat; // 是否打印排版线条
     private boolean showThreadInfo; // 是否打印线程信息
     private boolean showMethodInfo; // 是否打印方法信息(类名/方法名/行号)
     private int logMinLevel; // 日志最小显示级别
@@ -26,13 +53,12 @@ public class LogConfig {
 
     public LogConfig() {
         this.isLogEnabled = true;
-        this.showFormat = false;
         this.showThreadInfo = false;
         this.showMethodInfo = false;
-        this.commonTag = Constants.TAG;
+        this.commonTag = LogConstants.TAG;
         this.logMinLevel = Log.VERBOSE;
         this.parseList = new ArrayList<>();
-        this.addParserClass(Constants.DEFAULT_PARSE_CLASS);
+        this.addParserClass(DEFAULT_PARSE_CLASS);
     }
 
     /**
@@ -69,21 +95,6 @@ public class LogConfig {
      */
     public LogConfig setCommonTag(String prefix) {
         this.commonTag = prefix;
-        return this;
-    }
-
-    /**
-     * 返回是否打印排版线条
-     */
-    public boolean isShowFormat() {
-        return showFormat;
-    }
-
-    /**
-     * 设置是否打印排版线条
-     */
-    public LogConfig setShowFormat(boolean showFormat) {
-        this.showFormat = showFormat;
         return this;
     }
 
@@ -150,6 +161,13 @@ public class LogConfig {
      * 添加默认解析器
      */
     private LogConfig addParserClass(Class<? extends IParser>... classes) {
+        return addParserClass(Arrays.asList(classes));
+    }
+
+    /**
+     * 添加默认解析器
+     */
+    private LogConfig addParserClass(Collection<Class<? extends IParser>> classes) {
         for (Class<? extends IParser> clazz : classes) {
             try {
                 parseList.add(0, clazz.newInstance());

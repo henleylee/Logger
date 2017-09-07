@@ -6,15 +6,15 @@ package com.liyunlong.logger.utils;
  * @author liyunlong
  * @date 2017/7/26 15:53
  */
-public class Formatter {
+class Formatter {
 
-    public static final long KB_IN_BYTES = 1024;
-    public static final long MB_IN_BYTES = KB_IN_BYTES * 1024;
-    public static final long GB_IN_BYTES = MB_IN_BYTES * 1024;
-    public static final long TB_IN_BYTES = GB_IN_BYTES * 1024;
-    public static final long PB_IN_BYTES = TB_IN_BYTES * 1024;
+    private static final long KB_IN_BYTES = 1024;
+    private static final long MB_IN_BYTES = KB_IN_BYTES * 1024;
+    private static final long GB_IN_BYTES = MB_IN_BYTES * 1024;
+    private static final long TB_IN_BYTES = GB_IN_BYTES * 1024;
+    private static final long PB_IN_BYTES = TB_IN_BYTES * 1024;
 
-    public static String formatBytes(long sizeBytes) {
+    static String formatBytes(long sizeBytes) {
         final boolean isNegative = (sizeBytes < 0);
         float result = isNegative ? -sizeBytes : sizeBytes;
         String suffix = "B";

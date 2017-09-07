@@ -1,6 +1,6 @@
 package com.liyunlong.logger.parser;
 
-import com.liyunlong.logger.utils.Constants;
+import com.liyunlong.logger.utils.LogConstants;
 
 import java.util.Locale;
 
@@ -12,7 +12,7 @@ import java.util.Locale;
  */
 public interface IParser<T> {
 
-    String LINE_SEPARATOR = Constants.LINE_SEPARATOR;
+    String LINE_SEPARATOR = LogConstants.LINE_SEPARATOR;
     Locale LOCALE = Locale.getDefault();
 
     Class<T> parseClassType();

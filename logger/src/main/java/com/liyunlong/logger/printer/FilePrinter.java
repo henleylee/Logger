@@ -9,7 +9,7 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.liyunlong.logger.utils.Constants;
+import com.liyunlong.logger.utils.LogConstants;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -28,7 +28,7 @@ import java.util.Locale;
  */
 public class FilePrinter extends Printer {
 
-    private static final String DIRECTORY_NAME = Constants.TAG;
+    private static final String DIRECTORY_NAME = LogConstants.TAG;
     private static final String DIRECTORY_PATH = new File(Environment.getExternalStorageDirectory(), DIRECTORY_NAME).getPath();
     private static final String FILE_NAME_VERBOSE = "verbose_";
     private static final String FILE_NAME_INFO = "info_";
@@ -103,8 +103,8 @@ public class FilePrinter extends Printer {
                 fileName = FILE_NAME_VERBOSE;
                 break;
         }
-        String fileNameTime = generateFormatDate("yyyy-MM-dd-HH");
-        fileName = fileName + fileNameTime; // 拼接打印时间(yyyy-MM-dd-HH格式)
+        String fileNameTime = generateFormatDate("yyyy-MM-dd");
+        fileName = fileName + fileNameTime; // 拼接打印时间(yyyy-MM-dd格式)
         fileName = fileName + FILE_NAME_SUFFIX; // 拼接文件后缀(.log格式)
         File logFile = new File(dir, fileName); // 日志文件
         try {
@@ -135,6 +135,7 @@ public class FilePrinter extends Printer {
             }
             //打印日志信息
             printWriter.print(tag + "\t" + message);
+            printWriter.flush();
             printWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -152,6 +153,7 @@ public class FilePrinter extends Printer {
             printWriter.print("App Version:");
             printWriter.print(packageInfo.versionName);
             printWriter.print('(');
+            printWriter.print("versionCode:");
             printWriter.print(packageInfo.versionCode);
             printWriter.println(')');
 
@@ -159,6 +161,7 @@ public class FilePrinter extends Printer {
             printWriter.print("OS Version:");
             printWriter.print(Build.VERSION.RELEASE);
             printWriter.print('(');
+            printWriter.print("SDKVersion:");
             printWriter.print(Build.VERSION.SDK_INT);
             printWriter.println(')');
 
