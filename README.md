@@ -13,6 +13,10 @@
 * 支持自定义对象解析器；
 * 支持自定义日志输出树，如输出到文件的树等。
 
+## APK Demo ##
+
+下载 [APK-Demo](https://github.com/HenleyLee/Logger/raw/master/app/app-release.apk)
+
 ## 使用介绍 ##
 使用前需要进行日志的配置初始化及打印助手的添加，默认实现了打印到Logcat、文件、Console的打印助手，但需要在应用启动时进行添加，这样才能将日志信息打印到Logcat、文件、Console中。一般需要在自定义Application的OnCreate方法中进行如下配置：
 ```
