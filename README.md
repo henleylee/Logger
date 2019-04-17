@@ -13,7 +13,15 @@
 * 支持自定义对象解析器；
 * 支持自定义日志输出树，如输出到文件的树等。
 
-## APK Demo ##
+## Download ##
+### Gradle ###
+```gradle
+dependencies {
+    implementation 'com.henley.logger:logger:1.0.0'
+}
+```
+
+### APK Demo ###
 
 下载 [APK-Demo](https://github.com/HenleyLee/Logger/raw/master/app/app-release.apk)
 
